@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trợ Lý Giải Toán Nhanh</title>
+    <!-- Nhúng thư viện KaTeX để hiển thị công thức toán đẹp -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <!-- Nhúng thư viện tạo mã QR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Ứng Dụng Giải Toán Thông Minh</h1>
+        <button class="btn-qr" onclick="toggleQR()">📱 Mã QR Lớp Học</button>
+    </header>
+
+    <!-- Khung hiển thị mã QR (ẩn mặc định) -->
+    <div id="qr-modal" class="qr-box hidden">
+        <h3>Quét mã để truy cập trên điện thoại</h3>
+        <div id="qrcode"></div>
+        <p class="note">*Mẹo: Sau khi đưa web lên GitHub Pages, mã này sẽ tự nhận link của bạn.</p>
+    </div>
+
+    <!-- Thanh chuyển đổi chức năng (Tabs) -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('pt2')">Phương trình bậc 2</button>
+        <button class="tab-btn" onclick="openTab('he2')">Hệ phương trình 2 ẩn</button>
+        <button class="tab-btn" onclick="openTab('can')">Rút gọn Căn & Phân số</button>
+    </div>
+
+    <!-- CHỨC NĂNG 1: GIẢI PHƯƠNG TRÌNH BẬC 2 -->
+    <div id="pt2" class="card">
+        <h2>Giải phương trình: $ax^2 + bx + c = 0$</h2>
+        <div class="input-group">
+            <input type="number" id="a2" placeholder="Nhập a" step="any">
+            <input type="number" id="b2" placeholder="Nhập b" step="any">
+            <input type="number" id="c2" placeholder="Nhập c" step="any">
+        </div>
+        <div class="actions">
+            <button class="btn-solve" onclick="solveQuadratic()">Giải phương trình</button>
+            <button class="btn-sd" onclick="toggleSD('pt2')">S ⇔ D</button>
+        </div>
+        <div id="res-pt2" class="result-area">Nhập hệ số và bấm Giải...</div>
+    </div>
+
+    <!-- CHỨC NĂNG 2: HỆ PHƯƠNG TRÌNH 2 ẨN -->
+    <div id="he2" class="card hidden">
+        <h2>Giải hệ phương trình 2 ẩn</h2>
+        <p class="desc">Dạng: $a_1x + b_1y = c_1$ và $a_2x + b_2y = c_2$</p>
+        <div class="input-group">
+            <input type="number" id="a1" placeholder="a1" step="any">
+            <input type="number" id="b1" placeholder="b1" step="any">
+            <input type="number" id="c1" placeholder="c1" step="any">
+        </div>
+        <div class="input-group">
+            <input type="number" id="a2_sys" placeholder="a2" step="any">
+            <input type="number" id="b2_sys" placeholder="b2" step="any">
+            <input type="number" id="c2_sys" placeholder="c2" step="any">
+        </div>
+        <div class="actions">
+            <button class="btn-solve" onclick="solveSystem2()">Giải hệ</button>
+            <button class="btn-sd" onclick="toggleSD('he2')">S ⇔ D</button>
+        </div>
+        <div id="res-he2" class="result-area">Nhập các hệ số và bấm Giải...</div>
+    </div>
+
+    <!-- CHỨC NĂNG 3: RÚT GỌN CĂN THỨC & PHÂN SỐ -->
+    <div id="can" class="card hidden">
+        <h2>Tách căn bậc hai: $\sqrt{N}$</h2>
+        <div class="input-group">
+            <input type="number" id="sqrt-n" placeholder="Nhập số nguyên dương N (VD: 50)">
+        </div>
+        <div class="actions">
+            <button class="btn-solve" onclick="simplifySqrtUI()">Rút gọn căn</button>
+            <button class="btn-sd" onclick="toggleSD('can')">S ⇔ D</button>
+        </div>
+        <div id="res-can" class="result-area">Kết quả dạng chuẩn Casio sẽ hiện ở đây...</div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
